@@ -5,7 +5,9 @@ function ChatBot() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
 
+
   const sendMessage = async () => {
+      
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -28,11 +30,11 @@ function ChatBot() {
   return (
     <div className="p-4 chatBox">
       <div className="botProfile">BOT BA+</div>
-      <div>
+      <div className="messages">
         {messages.map((msg, i) => (
           <div key={i}>
             <p className="userChat"><b>You:</b> {msg.user}</p>
-            <p><b>Bot:</b> {msg.bot}</p>
+            <p className="bottyping"><b>Bot:</b> {msg.bot}</p>
           </div>
         ))}
       </div>
@@ -41,7 +43,7 @@ function ChatBot() {
           value={input}
           className="input"
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask something..."
+          placeholder="How can i help you..."
         />
         <button onClick={sendMessage}>Send</button>
       </div>
